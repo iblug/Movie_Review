@@ -5,3 +5,7 @@ class Review(models.Model):
     title = models.CharField(max_length=10)
     content = models.TextField()
     movie = models.CharField(max_length=20)
+
+class Comment(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    content = models.TextField(null=False)
