@@ -8,5 +8,8 @@
 <p>후기 내용 - {{ review.content }}</p>
 <p>영화 이름 - {{ review.movie }}</p>
 <hr>
+{% if request.user == review.user %}
+<a href="{% url 'reviews:update' review.pk %}">[UPDATE]</a>
+{% endif %}
 <a href="{% url 'reviews:index' %}">[Back]</a>
 {% endblock content %}
