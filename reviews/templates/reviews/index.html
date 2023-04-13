@@ -8,6 +8,8 @@
   {% csrf_token %}
   <input type="submit" value="Logout">
 </form>
+<hr>
+<a href="{% url 'reviews:create' %}">Create</a>
 {% else %}
 <a href="{% url 'accounts:login' %}">Login</a>
 <a href="{% url 'accounts:signup' %}">Signup</a>
