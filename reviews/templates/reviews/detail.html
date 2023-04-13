@@ -9,7 +9,11 @@
 <p>영화 이름 - {{ review.movie }}</p>
 <hr>
 {% if request.user == review.user %}
-<a href="{% url 'reviews:update' review.pk %}">[UPDATE]</a>
+  <a href="{% url 'reviews:update' review.pk %}">[UPDATE]</a>
+  <form action="{% url 'reviews:delete' review.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+  </form>
 {% endif %}
 <a href="{% url 'reviews:index' %}">[Back]</a>
 {% endblock content %}

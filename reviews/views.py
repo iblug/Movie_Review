@@ -37,6 +37,7 @@ def detail(request, review_pk):
     return render(request, 'reviews/detail.html', context)
 
 
+@login_required
 def update(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     
@@ -55,3 +56,11 @@ def update(request, review_pk):
         'form': form,
     }
     return render(request, 'reviews/update.html', context)
+
+
+@login_required
+def delete(request, review_pk):
+    review = Review.objects.get(pk=review_pk)
+    if request.user == review.user:
+        review.delete()
+    return redirect('reviews:index')
