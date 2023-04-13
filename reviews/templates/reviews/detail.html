@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Detail</h1>
+<p>후기 작성자 - {{ review.user }}</p>
+<p>후기 번호 - {{ review.pk }}</p>
+<p>후기 제목 - {{ review.title }}</p>
+<p>후기 내용 - {{ review.content }}</p>
+<p>영화 이름 - {{ review.movie }}</p>
+<hr>
+<a href="{% url 'reviews:index' %}">[Back]</a>
+{% endblock content %}
