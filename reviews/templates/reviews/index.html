@@ -8,10 +8,17 @@
   {% csrf_token %}
   <input type="submit" value="Logout">
 </form>
-<hr>
+<br>
 <a href="{% url 'reviews:create' %}">Create</a>
 {% else %}
 <a href="{% url 'accounts:login' %}">Login</a>
 <a href="{% url 'accounts:signup' %}">Signup</a>
 {% endif %}
+<hr>
+{% for review in reviews %}
+<p>후기 번호 - {{ review.pk }}</p>
+<p>영화이름 - {{ review.movie }}</p>
+<a href="{% url 'reviews:detail' review.pk %}">[Detail]</a>
+<hr>
+{% endfor %}
 {% endblock content %}
