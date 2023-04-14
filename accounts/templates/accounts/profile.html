@@ -3,7 +3,7 @@
 <style>
   .img-wrapper {
     position: relative;
-    width: 100%;
+    width: 150px;
     padding-bottom: 100%;
   }
   
@@ -23,22 +23,32 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <h1>Profile</h1>
-  <div class="row mb-3">
-    <div class="col-2 p-3">
-      {% if user.profile_img %}
-      <div class="img-wrapper">
-        <img src="{{ user.profile_img.url }}" alt="{{ user.profile_img }}">
+  <h1 class="mb-3">Profile</h1>
+  <div class="card mb-3 p-2">
+    <div class="d-flex align-items-center gap-2">
+      <div>
+        {% if user.profile_img %}
+        <div class="img-wrapper">
+          <img src="{{ user.profile_img.url }}" alt="{{ user.profile_img }}" class="rounded">
+        </div>
+        {% else %}
+        <div class="img-wrapper">
+          <img src="{% static 'default-profile.png' %}" alt="default-profile">
+        </div>
+        {% endif %}
       </div>
-      {% else %}
-      <div class="img-wrapper">
-        <img src="{% static 'default-profile.png' %}" alt="default-profile">
+      <div class="flex-grow-1">
+        <div class="card-body">
+          <p class="card-text m-0"><small class="text-body-secondary">이름</small></p>
+          <p class="card-text">{{ user }}</p>
+          <p class="card-text m-0"><small class="text-body-secondary">이메일</small></p>
+          <p class="card-text">{{ user.email }}</p>
+          <div class="d-flex gap-2">
+            <a href="{% url 'accounts:profile_update' user.pk %}" class="btn btn-sm btn-outline-primary">정보 수정</a>
+            <a href="{% url 'accounts:change_password' %}" class="btn btn-sm btn-primary">비밀번호 변경</a>
+          </div>
+        </div>
       </div>
-      {% endif %}
-    </div>
-    <div class="col-10 p-3">
-      <p>이름 - {{ user }}</p>
-      <p>이메일 - {{ user.email }}</p>
     </div>
   </div>
   <h3 class="mb-3">리뷰목록</h3>
