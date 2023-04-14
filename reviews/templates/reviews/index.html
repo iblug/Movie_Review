@@ -3,7 +3,7 @@
 {% block content %}
 <h1>index</h1>
 {% if request.user.is_authenticated %}
-<h3>{{ request.user }}님, 안녕하세요!</h3>
+<h3><a href="{% url 'accounts:profile' user.pk %}">{{ request.user }}</a>님, 안녕하세요!</h3>
 <form action="{% url 'accounts:logout' %}" method="POST">
   {% csrf_token %}
   <input type="submit" value="Logout">
