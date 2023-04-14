@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>profile</h1>
+<p>이름 - {{ user }}</p>
+<p>이메일 - {{ user.email }}</p>
+<h3>리뷰목록</h3>
+{% for review in reviews %}
+<p>후기 번호 - {{ review.pk }}</p>
+<p>영화이름 - {{ review.movie }}</p>
+<a href="{% url 'reviews:detail' review.pk %}">[Detail]</a>
+{% endfor %}
+<hr>
+<a href="{% url 'reviews:index' %}">[Index]</a>
+{% endblock content %}
