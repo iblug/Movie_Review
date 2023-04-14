@@ -21,7 +21,7 @@
   <ul>
     {% for comment in comments %}
       <li>
-        {{ comment.user }} - {{ comment.content }}
+        {{ comment.user.username|slice:":4" }}**** - {{ comment.content }}
         {% if request.user == comment.user %}
           <form action="{% url 'reviews:comments_delete' review.pk comment.pk %}" method="POST">
             {% csrf_token %}
