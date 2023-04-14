@@ -16,18 +16,16 @@
     {% if request.user.is_authenticated %}
       <div class='d-flex'>
         <h5 class='me-3'><a href="{% url 'accounts:profile' user.pk %}">{{ request.user }}</a>님, 안녕하세요!</h5>
-        <form class='me-3' action="{% url 'accounts:logout' %}" method="POST">
+        <form action="{% url 'accounts:logout' %}" method="POST">
           {% csrf_token %}
-          <input type="submit" value="Logout">
+          <input type="submit" value="Logout" class="btn btn-danger me-3">
         </form>
         <br>
       </div>
     {% else %}
       <div class='d-flex'>
-        <form class='me-3' action="{% url 'accounts:login' %}" method="POST">
-          {% csrf_token %}
-          <input type="submit" value="Login">
-        </form>
+        <a href="{% url 'accounts:login' %}" class="btn btn-info me-3">로그인</a>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-primary me-3">회원가입</a>
         <br>
       </div>
     {% endif %}
