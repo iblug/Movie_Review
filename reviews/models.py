@@ -1,4 +1,6 @@
 from django.db import models
+from imagekit.models import ImageSpecField
+from imagekit.processors import Thumbnail
 from django.conf import settings
 
 
@@ -9,6 +11,10 @@ class Review(models.Model):
     content = models.TextField()
     movie = models.CharField(max_length=20)
     image = models.ImageField(blank=True)
+    image_thumbnail = ImageSpecField(source='image',
+                                      processors=[Thumbnail(100, 150)],
+                                      format='JPEG',
+                                      options={'quality': 60})
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
