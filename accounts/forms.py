@@ -13,11 +13,16 @@ class CustomUserCreationForm(UserCreationForm):
         )
     )
 
+    profile_img = forms.FileField(
+        required=False
+    )
+
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
         fields = (
             'username',
             'email',
+            'profile_img',
             'password1',
             'password2',
         )
