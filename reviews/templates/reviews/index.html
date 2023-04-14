@@ -7,19 +7,8 @@
 <a href="{% url 'reviews:create' %}">Create</a>
 {% endif %}
 <hr>
-{% for review in reviews %}
-<div class="d-flex align-items-center my-4">
-  {% if review.image %}
-    <img src="{{ review.image.url }}" alt="img" width="100px;">
-  {% else %}
-    <img src="{% static 'no-image.png' %}" alt="no-img" width="100px;">
-  {% endif %}
-  <div>
-    <p>후기 번호 - {{ review.pk }}</p>
-    <p>영화이름 - {{ review.movie }}</p>
-    <a href="{% url 'reviews:detail' review.pk %}">[Detail]</a>
-  </div>
-</div>
-<hr>
-{% endfor %}
+
+<!-- 리뷰 목록 -->
+{% include 'review_list.html' %}
+
 {% endblock content %}

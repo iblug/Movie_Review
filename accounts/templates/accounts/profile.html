@@ -42,14 +42,10 @@
     </div>
   </div>
   <h3 class="mb-3">리뷰목록</h3>
-  {% for review in reviews %}
-  <p>후기 번호 - {{ review.pk }}</p>
-  <p>영화이름 - {{ review.movie }}</p>
-  <a href="{% url 'reviews:detail' review.pk %}">[Detail]</a>
-  {% empty %}
-  <p class="text-center text-secondary">아직 작성한 후기가 없습니다</p>
-  {% endfor %}
-  <hr>
+
+  <!-- 리뷰 목록 -->
+  {% include 'review_list.html' %}
+  
   <a href="{% url 'reviews:index' %}">[Index]</a>
 </div>
 {% endblock content %}
